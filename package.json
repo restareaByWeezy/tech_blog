@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "commit": "./node_modules/cz-customizable/standalone.js"
+    "cz": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.1",
