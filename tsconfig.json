@@ -5,6 +5,10 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    },
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -16,6 +20,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/assets/index.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/assets/index.js",
+    ".contentlayer/generated",
+    "**/*.css.ts"
+  ],
   "exclude": ["node_modules"]
 }

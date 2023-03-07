@@ -1,9 +1,8 @@
-import { style } from '@vanilla-extract/css'
-import { recipe } from '@vanilla-extract/recipes'
+import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+import { vars } from 'styles/vars.css';
 
-import { vars } from 'styles/vars.css'
-
-import { textFadeIn } from './animation.css'
+import { textFadeIn } from './animation.css';
 
 // HOVER
 export const iconHover = style({
@@ -13,13 +12,13 @@ export const iconHover = style({
       cursor: 'pointer',
     },
   },
-})
+});
 
 // TRANSITION
 export const showWithScale = style({
   transition: 'all 0.8s ease',
   transform: 'scale(1)',
-})
+});
 
 // CURSORS
 
@@ -44,7 +43,7 @@ export const cursor = recipe({
       },
     },
   },
-})
+});
 
 export const pointer = style({
   selectors: {
@@ -52,7 +51,7 @@ export const pointer = style({
       cursor: 'pointer',
     },
   },
-})
+});
 
 export const wordBreak = recipe({
   variants: {
@@ -65,9 +64,9 @@ export const wordBreak = recipe({
       },
     },
   },
-})
+});
 
 //TEXT FADE IN
 export const fadeIn = style({
   animation: `${textFadeIn} 2s ease-in-out`,
-})
+});

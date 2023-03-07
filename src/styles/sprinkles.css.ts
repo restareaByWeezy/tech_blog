@@ -1,6 +1,6 @@
-import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
-import { vars } from './vars.css'
+import { vars } from './vars.css';
 
 const responsiveProperties = defineProperties({
   conditions: {
@@ -42,7 +42,7 @@ const responsiveProperties = defineProperties({
     placeItems: ['alignItems', 'justifyContent'],
     typeSize: ['fontSize', 'lineHeight'],
   },
-})
+});
 
 const colorModeProperties = defineProperties({
   conditions: {
@@ -54,9 +54,9 @@ const colorModeProperties = defineProperties({
     color: vars.color,
     background: vars.color,
   },
-})
+});
 
 export const sprinkles = createSprinkles(
   responsiveProperties,
   colorModeProperties,
-)
+);

@@ -5,6 +5,8 @@ const path = require('path') // 1. path 선언
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin')
 const withVanillaExtract = createVanillaExtractPlugin()
 
+const { withContentlayer } = require('next-contentlayer')
+
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
@@ -21,4 +23,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withVanillaExtract(nextConfig)
+module.exports = withContentlayer(withVanillaExtract(nextConfig))

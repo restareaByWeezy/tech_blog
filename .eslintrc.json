@@ -3,13 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["react-app", "react-app/jest", "airbnb-typescript", "prettier"],
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/resolver": {
@@ -18,78 +12,24 @@
       }
     }
   },
-  "plugins": ["react", "@typescript-eslint", "import"],
-  "overrides": [],
+  "plugins": ["json-format", "simple-import-sort"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+    "project": "./tsconfig.json"
   },
   "rules": {
-    "import/order": [
-      "warn",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "index",
-          "sibling",
-          "unknown",
-          "object"
-        ],
-        "pathGroupsExcludedImportTypes": ["react", "unknown", "antd"],
-        "pathGroups": [
-          {
-            "pattern": "{react*, react*/**}",
-            "group": "builtin",
-            "position": "before"
-          },
-          {
-            "pattern": "{styled-components}",
-            "group": "external",
-            "position": "before"
-          },
-          { "pattern": "react-dom", "group": "builtin", "position": "after" },
-          {
-            "pattern": "./components",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "../components",
-            "group": "internal",
-            "position": "before"
-          },
-          { "pattern": "./hooks", "group": "internal", "position": "after" },
-          { "pattern": "../hooks", "group": "internal", "position": "after" },
-          { "pattern": "*.less", "group": "unknown", "position": "after" },
-          { "pattern": "../assets", "group": "object", "position": "after" }
-        ],
-        "alphabetize": {
-          "order": "asc"
-        },
-        "newlines-between": "always-and-inside-groups"
-      }
-    ],
-    "arrow-body-style": "off",
-    "semi": ["warn", "never"],
-    "react/function-component-definition": [
-      "warn",
-      { "namedComponents": "arrow-function" }
-    ],
-    "react/jsx-one-expression-per-line": "off",
-    "react/jsx-filename-extension": [
-      "error",
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
-    "react/no-array-index-key": "warn",
-    "no-param-reassign": ["error", { "props": false }],
-    "no-unused-expressions": ["warn"],
-    "prefer-const": ["warn"],
-    "prefer-destructuring": ["error", { "object": true, "array": false }],
-    "lines-between-class-members": "off",
-    "jsx-a11y/click-events-have-key-events": "off"
-  }
+    "import/no-extraneous-dependencies": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/extensions": ["off"],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-console": "warn",
+    "react/jsx-key": "error"
+  },
+  "ignorePatterns": [
+    "**/__generated__/**/*",
+    "**/dist/**/*",
+    ".eslintrc.js",
+    "cz-config.js"
+  ]
 }

@@ -1,16 +1,13 @@
-import { useState } from 'react'
-
+import type { DehydratedState } from '@tanstack/react-query'
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-
-import type { DehydratedState } from '@tanstack/react-query'
 import { NextPageContext } from 'next'
 import type { AppProps } from 'next/app'
-
 import Head from 'next/head'
+import { useState } from 'react'
 
 type PageProps = {
   dehydratedState?: DehydratedState
