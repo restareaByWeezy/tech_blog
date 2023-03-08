@@ -1,27 +1,15 @@
 import { Post } from 'contentlayer/generated';
 
-import BlogPost from '@/components/features/BlogPost';
+import Layout from '@/components/layouts/Layout';
 
-interface BlogContentProps {
-  posts: Array<Post>;
+import BlogContent from './BlogContent';
+
+export interface BlogStaticProps {
+  posts: Post[];
 }
 
-const BlogContent = ({ posts }: BlogContentProps) => {
-  return (
-    <div>
-      <div>
-        {posts.map(post => (
-          <BlogPost
-            date={post.date}
-            title={post.title}
-            des={post.description}
-            slug={post._raw.flattenedPath}
-            key={post._id}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+const Blog = ({ posts }: BlogStaticProps) => (
+  <Layout content={<BlogContent posts={posts} />} />
+);
 
-export default BlogContent;
+export default Blog;

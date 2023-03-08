@@ -10,9 +10,11 @@ interface BlogPostProps {
 const BlogPost = ({ date, title, des, slug }: BlogPostProps) => {
   return (
     <Link href={`/blog/${slug}`} passHref>
-      <div>{date}</div>
-      <div>{title}</div>
-      <div>{des}</div>
+      <a>
+        <div>{date}</div>
+        <div>{title}</div>
+        <div>{des}</div>
+      </a>
     </Link>
   );
 };

@@ -1,17 +1,14 @@
 import { allPosts } from 'contentlayer/generated';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useMDXComponent } from 'next-contentlayer/hooks';
+import React from 'react';
 
-const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const MDXComponent = useMDXComponent(post.body.code);
-  return (
-    <div>
-      <h1>{post.title}</h1>
-      <MDXComponent />
-      rsc
-    </div>
-  );
-};
+import BlogSlug from '@/components/elements/BlogSlug';
+
+const blogSlug = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <BlogSlug post={post} />
+);
+
+export default blogSlug;
 
 export const getStaticPaths = async () => {
   return {
@@ -28,5 +25,3 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 };
-
-export default Post;

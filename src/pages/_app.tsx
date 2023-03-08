@@ -1,24 +1,24 @@
-import type { DehydratedState } from '@tanstack/react-query'
+import type { DehydratedState } from '@tanstack/react-query';
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query'
-import { NextPageContext } from 'next'
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
-import { useState } from 'react'
+} from '@tanstack/react-query';
+import { NextPageContext } from 'next';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useState } from 'react';
 
 type PageProps = {
-  dehydratedState?: DehydratedState
-}
+  dehydratedState?: DehydratedState;
+};
 
 type ExtendedAppProps<P = object> = {
-  err?: NextPageContext['err']
-} & AppProps<P>
+  err?: NextPageContext['err'];
+} & AppProps<P>;
 
 const MyApp = ({ Component, pageProps }: ExtendedAppProps<PageProps>) => {
-  const [queryClient] = useState(() => new QueryClient())
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <>
@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps }: ExtendedAppProps<PageProps>) => {
         </Hydrate>
       </QueryClientProvider>
     </>
-  )
-}
+  );
+};
 
-export default MyApp
+export default MyApp;

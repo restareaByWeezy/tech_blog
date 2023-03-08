@@ -1,17 +1,15 @@
 import { Post } from 'contentlayer/generated';
 
-import RecentPosts from './fragments/RecentPosts';
+import Layout from '@/components/layouts/Layout';
 
-interface HomeProps {
-  posts: Array<Post>;
+import HomeContent from './HomeContent';
+
+export interface HomeStaticProps {
+  posts: Post[];
 }
 
-const HomeContent = ({ posts }: HomeProps) => {
-  return (
-    <div>
-      <RecentPosts posts={posts} />
-    </div>
-  );
-};
+const Home = ({ posts }: HomeStaticProps) => (
+  <Layout content={<HomeContent posts={posts} />} />
+);
 
-export default HomeContent;
+export default Home;

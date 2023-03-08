@@ -1,4 +1,4 @@
-import { createGlobalTheme } from '@vanilla-extract/css'
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const staticColors = {
   // GrayScale
@@ -12,22 +12,22 @@ export const staticColors = {
   white: '#ffffff',
 
   // MODAL
-  modal: '#ffffff',
+  modal: '#fffffe',
 
   // BACKGROUND
-  bg_primary: '#ffffff',
-  bg_secondary: '#fafafa',
-  bg_tertiary: '#f0f0f0',
+  // bg_primary: '#fffffe',
+  // bg_secondary: '#fafafa',
+  // bg_tertiary: '#f0f0f0',
   // BASE
   primary: '#6D55CF',
   primary_sub: '#8774d8',
   secondary: '#66659A',
   secondary_sub: '#d4cdf1',
-  tertiary: '#5035bc',
+  tertiary: '#2cb67d',
   tertiary_sub: '#7e69d5',
 
   // POINT
-  point: '#F77721',
+  point: '#2cb67d',
   point_sub: '#f99552',
 
   //DIM COLOR
@@ -41,7 +41,7 @@ export const staticColors = {
   error: '#FF3D00',
   info: '#429AEB',
 
-  sidebar: '#140A33',
+  sidebar: '#242629',
 
   // BlueScale
   blue9: '#0C2C70',
@@ -61,7 +61,7 @@ export const staticColors = {
   g_trans1: 'rgba(176, 179, 188, 0.1)',
 
   // btn
-  primary_btn: '#6D55CF',
+  primary_btn: '#7f5af0',
   primary_pressed: '#8164F5',
   secondary_btn: '#464C53',
   secondary_pressed: '#26282B',
@@ -73,13 +73,12 @@ export const staticColors = {
   disabled_btn: '#E8EBED',
 
   // background
-  bg: '#ffffff',
-  subBg: '#f0f3f6',
-  darkBg: '#181818',
+  bg: '#16161a',
+  subBg: '#242629',
 
   // shadow
   shadow: '0 2px 8px rgb(0 0 0 / 15%)',
-}
+};
 
 export const textColors = {
   text_base: staticColors.black,
@@ -87,12 +86,12 @@ export const textColors = {
   text_white: staticColors.white,
   text_disabled: staticColors.gray3,
   text_text: staticColors.gray3,
-}
+};
 
 export const borderColors = {
   // border
-  border: '#e6e6e6',
-}
+  border: '#010101',
+};
 
 export const vars = createGlobalTheme(':root', {
   breakpoint: {
@@ -162,4 +161,4 @@ export const vars = createGlobalTheme(':root', {
     ...textColors,
     ...borderColors,
   },
-})
+});
