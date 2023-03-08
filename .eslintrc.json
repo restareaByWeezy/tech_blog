@@ -29,7 +29,16 @@
     "import/extensions": ["off"],
     "@typescript-eslint/no-unused-vars": "warn",
     "no-console": "warn",
-    "react/jsx-key": "error"
+    "react/jsx-key": "error",
+    // FOR NEXTJS LINK PASS href
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
   },
   "ignorePatterns": [
     "**/__generated__/**/*",

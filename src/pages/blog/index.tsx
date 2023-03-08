@@ -1,18 +1,19 @@
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 
-import HomeContent from '@/components/elements/Home';
+import BlogContent from '@/components/elements/Blog';
 
-const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return <HomeContent posts={posts} />;
-};
+const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <BlogContent posts={posts} />
+);
 
-export default Home;
+export default Blog;
 
 export const getStaticProps = async () => {
   const posts = allPosts.sort(
     (a, b) => Number(new Date(b.date)) - Number(new Date(a.date)),
   );
+
   return {
     props: {
       posts,

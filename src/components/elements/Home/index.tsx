@@ -1,5 +1,17 @@
-const HomePage = () => {
-  return <div>123</div>
+import { Post } from 'contentlayer/generated';
+
+import RecentPosts from './fragments/RecentPosts';
+
+interface HomeProps {
+  posts: Array<Post>;
 }
 
-export default HomePage
+const HomeContent = ({ posts }: HomeProps) => {
+  return (
+    <div>
+      <RecentPosts posts={posts} />
+    </div>
+  );
+};
+
+export default HomeContent;
