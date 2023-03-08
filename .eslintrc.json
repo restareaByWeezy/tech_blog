@@ -3,7 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["react-app", "react-app/jest", "airbnb-typescript", "prettier"],
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "airbnb-typescript",
+    "plugin:prettier/recommended"
+  ],
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/resolver": {

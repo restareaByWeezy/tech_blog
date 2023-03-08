@@ -1,7 +1,7 @@
-import HomePage from 'components'
+import HomePage from '@/components/elements/Home'
 
-const Main = () => {
+const homepage = () => {
   return <HomePage />
 }
 
-export default Main
+export default homepage
