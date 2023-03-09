@@ -1,7 +1,7 @@
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 
-import Home from '@/components/elements/Home';
+import Home from '@/elements/Home';
 
 const home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Home posts={posts} />

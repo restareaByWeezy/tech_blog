@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -25,8 +25,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/assets/index.js",
-    ".contentlayer/generated",
-    "**/*.css.ts"
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }

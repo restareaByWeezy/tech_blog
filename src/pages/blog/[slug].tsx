@@ -2,7 +2,7 @@ import { allPosts } from 'contentlayer/generated';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import React from 'react';
 
-import BlogSlug from '@/components/elements/BlogSlug';
+import BlogSlug from '@/elements/BlogSlug';
 
 const blogSlug = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <BlogSlug post={post} />

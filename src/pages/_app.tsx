@@ -1,3 +1,5 @@
+import '@/styles/global.css';
+
 import type { DehydratedState } from '@tanstack/react-query';
 import {
   Hydrate,

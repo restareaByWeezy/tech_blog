@@ -8,5 +8,4 @@ export const container = style({
   alignItems: 'center',
   justifyContent: 'center',
   maxHeight: '100vh',
-  backgroundColor: vars.color.bg,
 });

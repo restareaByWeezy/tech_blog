@@ -1,4 +1,4 @@
-import { keyframes } from '@vanilla-extract/css'
+import { keyframes } from '@vanilla-extract/css';
 
 export const animateGlow = keyframes({
   from: {
@@ -7,7 +7,7 @@ export const animateGlow = keyframes({
   to: {
     backgroundPosition: '200% 50%',
   },
-})
+});
 
 //TEXT FADE IN
 export const textFadeIn = keyframes({
@@ -19,4 +19,4 @@ export const textFadeIn = keyframes({
     opacity: 1,
     transform: 'translateZ(0)',
   },
-})
+});

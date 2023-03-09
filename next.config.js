@@ -5,7 +5,7 @@ const path = require('path'); // 1. path 선언
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
 const withVanillaExtract = createVanillaExtractPlugin();
 
-const { withContentlayer } = require('next-contentlayer');
+// const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
   images: {
@@ -22,4 +22,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withVanillaExtract(withContentlayer(nextConfig));
+module.exports = withVanillaExtract(nextConfig);

@@ -1,35 +1,19 @@
 import { globalFontFace, globalStyle } from '@vanilla-extract/css';
-import { vars } from 'styles/vars.css';
+
+import { vars } from '@/styles/vars.css';
+
+import { text } from './../components/common/Text/Text.css';
 
 globalFontFace('Pretendard-Regular', {
   src: 'url(https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff)',
-  // unicodeRange: 'U+AC00-D7A3',
 });
-
-// globalFontFace('campton', {
-//   src: 'url(src/assets/fonts/CamptonMedium.otf)',
-//   fontWeight: '500',
-//   unicodeRange:
-//     'U+0041-005A, U+0061-007A, U+0030-0039, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E',
-// });
-// globalFontFace('campton', {
-//   src: 'url(src/assets/fonts/CamptonSemiBold.otf)',
-//   fontWeight: '600',
-//   unicodeRange:
-//     'U+0041-005A, U+0061-007A, U+0030-0039, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E',
-// });
-// globalFontFace('campton', {
-//   src: 'url(src/assets/fonts/CamptonSemiBold.otf)',
-//   fontWeight: '700',
-//   unicodeRange:
-//     'U+0041-005A, U+0061-007A, U+0030-0039, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E',
-// });
 
 globalStyle('body', {
   width: '100%',
   minHeight: '100vh',
   boxSizing: 'border-box',
   lineHeight: 1.5,
+  margin: 0,
   WebkitFontSmoothing: `antialiased`,
   paddingRight: 'calc(var(--removed-body-scroll-bar-size )) !important', // FIX: radix scroll library bug must be fixed
   fontFamily: vars.fontFamily.body,
@@ -41,7 +25,9 @@ globalStyle('body', {
   },
 });
 
-globalStyle('#root', {
+globalStyle('#__next', {
+  backgroundColor: vars.color.bg,
+  color: vars.color.white,
   isolation: `isolate`,
   width: '100%',
   height: '100%',

@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { vars } from 'styles/vars.css';
+
+import { vars } from '@/styles/vars.css';
 
 import { textFadeIn } from './animation.css';
 

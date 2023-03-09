@@ -1,10 +1,10 @@
 import Document, {
   DocumentContext,
+  Head,
   Html,
   Main,
   NextScript,
 } from 'next/document';
-import Head from 'next/head';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -15,12 +15,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
