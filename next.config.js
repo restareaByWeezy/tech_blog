@@ -8,6 +8,10 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
+  images: {
+    domains: ['images.unsplash.com', 'media-exp1.licdn.com'],
+    dangerouslyAllowSVG: true,
+  },
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.unshift({
