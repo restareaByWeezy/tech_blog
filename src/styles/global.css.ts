@@ -4,9 +4,12 @@ import { vars } from '@/styles/vars.css';
 
 import { text } from './../components/common/Text/Text.css';
 
-globalFontFace('Pretendard-Regular', {
-  src: 'url(https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff)',
+globalFontFace('GmarketSansMedium', {
+  src: 'url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff)',
 });
+// globalFontFace('Pretendard-Regular', {
+//   src: 'url(https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff)',
+// });
 
 globalStyle('body', {
   width: '100%',
@@ -68,6 +71,7 @@ globalStyle(`img, picture, video, canvas, svg`, {
 globalStyle(`input, button, textarea, select`, {
   font: `inherit`,
   all: `unset`,
+  cursor: 'pointer',
 });
 
 globalStyle(`p, h1, h2, h3, h4, h5, h6`, {
@@ -85,13 +89,7 @@ globalStyle('a', {
   color: 'inherit',
 });
 
-//DATEPICKER
-
-//NOTE: CHANGE BUTTON COLOR DEPENDING ON SELECTION
-globalStyle('.rdrStartEdge ~ .rdrDayNumber span:after', {
-  background: `${vars.color.white} !important`,
-});
-
-globalStyle('.rdrDayNumber span:after', {
-  background: `${vars.color.primary} !important`,
+globalStyle('.iconButton > svg', {
+  width: '100%',
+  height: '100%',
 });

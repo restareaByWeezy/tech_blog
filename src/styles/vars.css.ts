@@ -81,7 +81,7 @@ export const staticColors = {
 };
 
 export const textColors = {
-  text_base: staticColors.black,
+  text_base: staticColors.white,
   text_gray: staticColors.gray4,
   text_white: staticColors.white,
   text_disabled: staticColors.gray3,
@@ -124,7 +124,7 @@ export const vars = createGlobalTheme(':root', {
     xl: '20px',
   },
   fontFamily: {
-    body: 'Pretendard-Regular, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    body: 'GmarketSansMedium, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     untitled: 'Untitled Sans, apple-system, sans-serif',
     mono: 'Söhne Mono, menlo, monospace',
   },
@@ -141,7 +141,7 @@ export const vars = createGlobalTheme(':root', {
   },
   fontWeight: {
     bold: '700',
-    semiBold: '600',
+    semiBold: '500',
   },
   lineHeight: {},
   zIndices: {
