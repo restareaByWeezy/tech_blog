@@ -11,6 +11,7 @@
     "cz": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.3",
     "@radix-ui/react-dropdown-menu": "^2.0.1",
     "@radix-ui/react-icons": "^1.1.1",
     "@radix-ui/react-scroll-area": "^1.0.2",

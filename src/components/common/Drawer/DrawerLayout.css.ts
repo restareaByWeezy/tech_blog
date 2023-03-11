@@ -7,6 +7,7 @@ export const wrapper = style({
   flexDirection: 'column',
   width: '100%',
   height: '100%',
+  backgroundColor: vars.color.subBg,
 });
 
 export const header = style({
@@ -22,10 +23,11 @@ export const content = style({
   flex: '1',
   flexDirection: 'column',
   height: '100%',
-  padding: '20px 28px 0',
 });
 
 export const closeBtn = style({
+  position: 'absolute',
+  right: '20px',
   width: '20px',
   height: '20px',
   cursor: 'pointer',

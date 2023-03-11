@@ -1,7 +1,8 @@
 import { createVar, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '../../styles/vars.css';
+import { vars } from '@/styles/vars.css';
+
 import {
   fadeIn,
   fadeOut,
@@ -18,7 +19,8 @@ export const overlay = style({
   right: 0,
   bottom: 0,
   left: 0,
-  backgroundColor: 'rgba(0,0,0,0.1)',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  filter: 'blur(5px)',
   zIndex: vars.zIndices.DRAWEROVERLAY,
   selectors: {
     '&[data-state="open"]': {
@@ -34,14 +36,12 @@ export const styledContent = recipe({
   base: {
     position: 'fixed',
     top: 0,
-    bottom: 0,
     display: 'flex',
     flexDirection: 'column',
-    width: contentWidth,
+    width: 'fit-content',
     height: '100%',
-    backgroundColor: vars.color.gray1,
-    boxShadow: vars.color.shadow,
-
+    backgroundColor: vars.color.subBg,
+    color: vars.color.text_base,
     willChange: 'transform',
 
     vars: {
@@ -73,7 +73,7 @@ export const styledContent = recipe({
           [transformValue]: `translate3d(0,-200%,0)`,
         },
         width: '100%',
-        height: 300,
+        height: 'fit-content',
         bottom: 'auto',
       },
       right: {

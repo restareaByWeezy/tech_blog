@@ -18,6 +18,7 @@ interface DrawerContentProps {
   overlay?: boolean;
   title?: ReactNode | string;
   position?: 'first' | 'second';
+  closeIcon?: boolean;
 }
 
 const DrawerContent = forwardRef(
@@ -28,6 +29,7 @@ const DrawerContent = forwardRef(
       side,
       overlay,
       position,
+      closeIcon,
       ...props
     }: DrawerContentProps & DialogContentPrimitiveProps,
     forwardedRef,
@@ -39,7 +41,7 @@ const DrawerContent = forwardRef(
         {...props}
         ref={forwardedRef as Ref<HTMLDivElement> | undefined}
       >
-        <DrawerLayout children={children} title={title} />
+        <DrawerLayout closeIcon={closeIcon} children={children} title={title} />
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>
   ),

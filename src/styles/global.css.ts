@@ -29,12 +29,14 @@ globalStyle('body', {
 });
 
 globalStyle('#__next', {
-  backgroundColor: vars.color.bg,
-  color: vars.color.white,
-  isolation: `isolate`,
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
   height: '100%',
+  isolation: `isolate`,
   minHeight: '100vh',
+  backgroundColor: vars.color.bg,
+  color: vars.color.white,
 });
 
 // DRAG COLOR

@@ -1,8 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
+import { pointer } from '@/styles/utils.css';
 import { vars } from '@/styles/vars.css';
 
-import { pointer } from '../../styles/utils.css';
 import {
   slideDownAndFade,
   slideLeftAndFade,
