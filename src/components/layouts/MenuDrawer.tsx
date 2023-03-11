@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { Drawer, DrawerContent } from '../common/Drawer';
 import * as styles from './MenuDrawer.css';
 import Menus from './Menus';

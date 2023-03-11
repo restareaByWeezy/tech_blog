@@ -16,6 +16,7 @@ export type Post = {
   title: string
   date: string
   description: string
+  image: string
   /** MDX file body */
   body: MDX
 

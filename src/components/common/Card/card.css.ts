@@ -6,8 +6,7 @@ export const wrapper = recipe({
   base: {
     padding: vars.space.s10,
     borderRadius: vars.borderRadius.xl,
-    backgroundColor: vars.color.white,
-    boxShadow: vars.color.shadow,
+    backgroundColor: vars.color.subBg,
   },
   variants: {
     size: {

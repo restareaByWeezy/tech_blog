@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 
 import { cx } from '@/styles/classNames';
 
-import { GridVariantProps, row } from './Grid.css';
+import { GridVariantProps, row } from './grid.css';
 
 interface RowProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;

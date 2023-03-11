@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { vars } from '@/styles/vars.css';
-
 import { bpStyle } from './../../styles/responsive.css';
 
 export const container = style([
@@ -39,6 +37,7 @@ export const content = style({
   height: '100%',
   flex: '1',
   padding: '0 50px',
+  overflowY: 'auto',
 });
 
 export const footer = style({});
