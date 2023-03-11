@@ -13,5 +13,3 @@ export const menuWrapper = style({
   gap: vars.space.s10,
   zIndex: vars.zIndices.GNB,
 });
-
-export const menuItem = style([pointer]);

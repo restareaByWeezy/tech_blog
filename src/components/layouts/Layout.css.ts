@@ -23,17 +23,14 @@ export const header = style({
   padding: '0 50px',
 });
 
-export const tabletMenuButton = bpStyle('tablet', {
-  display: 'none',
-});
 export const menuButton = style([
-  tabletMenuButton,
   {
     width: '30px',
     height: '30px',
     minWidth: '30px',
   },
 ]);
+export const menuWrapper = style({});
 
 export const content = style({
   display: 'flex',

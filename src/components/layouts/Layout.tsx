@@ -1,11 +1,15 @@
 import { ReactNode, useReducer } from 'react';
 
 import { IconHamburger } from '@/assets/svg';
+import { useIsMobile } from '@/hooks/useReponsive';
 import { cx } from '@/styles/classNames';
+import { vars } from '@/styles/vars.css';
 
+import Row from '../common/_Grid/Row';
 import Text from '../common/Text/Text';
 import * as styles from './Layout.css';
 import MenuDrawer from './MenuDrawer';
+import Menus from './Menus';
 
 interface LayoutProps {
   content: ReactNode;
@@ -13,6 +17,7 @@ interface LayoutProps {
 
 const Layout = ({ content }: LayoutProps) => {
   const [open, toggleOpen] = useReducer(state => !state, false);
+  const { isMobile } = useIsMobile();
 
   return (
     <div className={styles.container}>
@@ -20,13 +25,26 @@ const Layout = ({ content }: LayoutProps) => {
         <Text size="h2" weight="bold">
           chillinmice.dev
         </Text>
-        <button
-          onClick={toggleOpen}
-          className={cx('iconButton', styles.menuButton)}
-        >
-          <IconHamburger />
-        </button>
-        <MenuDrawer open={open} onOpenChange={toggleOpen} />
+        {isMobile && (
+          <>
+            <button
+              onClick={toggleOpen}
+              className={cx('iconButton', styles.menuButton)}
+            >
+              <IconHamburger />
+            </button>
+            <MenuDrawer open={open} onOpenChange={toggleOpen} />
+          </>
+        )}
+        {!isMobile && (
+          <Row
+            gap={vars.space.s30}
+            align="center"
+            className={styles.menuWrapper}
+          >
+            <Menus />
+          </Row>
+        )}
       </header>
       <main className={styles.content}>{content}</main>
       <footer className={styles.header}>footer</footer>
