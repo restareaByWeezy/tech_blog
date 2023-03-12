@@ -30,12 +30,14 @@ const RecentPosts = ({ posts }: RecentPostsProps) => {
             <Card className={styles.card} size="full">
               <Text type="h2">{post.title}</Text>
               <Text>{post.description}</Text>
-              <Image
-                width={200}
-                height={200}
-                src={post.image}
-                alt={post.title}
-              />
+              <figure className={styles.thumbnailWrapper}>
+                <Image
+                  className={styles.thumbnail}
+                  layout="fill"
+                  src={post.image}
+                  alt={post.title}
+                />
+              </figure>
             </Card>
           </Link>
         ))}

@@ -1,8 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { bpStyle } from '@/styles/responsive.css';
 import { vars } from '@/styles/vars.css';
-
-import { bpStyle } from './../../../styles/responsive.css';
 
 export const desktopArticlesWrapper = bpStyle('desktop', {
   gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
@@ -22,4 +21,15 @@ export const articlesWrapper = style([
 
 export const card = style({
   maxWidth: '500px',
+});
+
+export const thumbnailWrapper = style({
+  position: 'relative',
+  width: '100%',
+  aspectRatio: '16/9',
+  maxHeight: '200px',
+});
+
+export const thumbnail = style({
+  objectFit: 'cover',
 });
