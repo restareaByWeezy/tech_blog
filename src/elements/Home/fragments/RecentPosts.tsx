@@ -1,10 +1,7 @@
 import { Post } from 'contentlayer/generated';
-import Image from 'next/image';
-import Link from 'next/link';
 
 import Col from '@/components/common/_Grid/Col';
-import Card from '@/components/common/Card';
-import Text from '@/components/common/Text/Text';
+import BlogPost from '@/components/features/BlogPost';
 import { vars } from '@/styles/vars.css';
 
 import * as styles from './RecentPosts.css';
@@ -26,20 +23,7 @@ const RecentPosts = ({ posts }: RecentPostsProps) => {
         className={styles.articlesWrapper}
       >
         {posts.slice(0, 5).map(post => (
-          <Link key={post._id} href={`/blog/${post._raw.flattenedPath}`}>
-            <Card className={styles.card} size="full">
-              <Text type="h2">{post.title}</Text>
-              <Text>{post.description}</Text>
-              <figure className={styles.thumbnailWrapper}>
-                <Image
-                  className={styles.thumbnail}
-                  layout="fill"
-                  src={post.image}
-                  alt={post.title}
-                />
-              </figure>
-            </Card>
-          </Link>
+          <BlogPost key={post._id} post={post} />
         ))}
       </Col>
     </section>

@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { vars } from '@/styles/vars.css';
+
 import { bpStyle } from './../../styles/responsive.css';
 
 export const container = style([
@@ -36,7 +38,7 @@ export const content = style({
   width: '100%',
   height: '100%',
   flex: '1',
-  padding: '0 50px',
+  padding: `${vars.space.s60} ${vars.space.s40} 0 ${vars.space.s40}`,
   overflowY: 'auto',
 });
 

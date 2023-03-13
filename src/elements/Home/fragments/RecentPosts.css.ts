@@ -19,9 +19,7 @@ export const articlesWrapper = style([
   },
 ]);
 
-export const card = style({
-  maxWidth: '500px',
-});
+export const card = style({});
 
 export const thumbnailWrapper = style({
   position: 'relative',

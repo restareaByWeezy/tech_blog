@@ -1,19 +1,34 @@
+import { Post } from 'contentlayer/generated';
+import Image from 'next/image';
 import Link from 'next/link';
 
+import Card from '../common/Card';
+import Text from '../common/Text/Text';
+import * as styles from './BlogPost.css';
+
 interface BlogPostProps {
-  date: string;
-  title: string;
-  des: string;
-  slug: string;
+  post: Post;
 }
 
-const BlogPost = ({ date, title, des, slug }: BlogPostProps) => {
+const BlogPost = ({ post }: BlogPostProps) => {
   return (
-    <Link href={`/blog/${slug}`} passHref>
+    <Link href={`/blog/${post._raw.flattenedPath}`} key={post._id} passHref>
       <a>
-        <div>{date}</div>
-        <div>{title}</div>
-        <div>{des}</div>
+        <Card size="full">
+          <figure className={styles.thumbnailWrapper}>
+            <Image
+              className={styles.thumbnail}
+              layout="fill"
+              src={post.image}
+              alt={post.title}
+            />
+          </figure>
+          <Text type="h2" size="h3" weight="semiBold">
+            {post.title}
+          </Text>
+          <Text>{post.description}</Text>
+          <Text>{post.date}</Text>
+        </Card>
       </a>
     </Link>
   );
