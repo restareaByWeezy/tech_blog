@@ -9,7 +9,7 @@ export const staticColors = {
   gray2: '#f0f0f0',
   gray1: '#f7f7f7',
   gray0: '#fafafa',
-  white: '#ffffff',
+  white: '#ececec',
 
   // MODAL
   modal: '#fffffe',

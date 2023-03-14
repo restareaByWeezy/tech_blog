@@ -9,7 +9,11 @@ const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'media-exp1.licdn.com'],
+    domains: [
+      'images.unsplash.com',
+      'media-exp1.licdn.com',
+      'velog.velcdn.com',
+    ],
     dangerouslyAllowSVG: true,
   },
   reactStrictMode: true,

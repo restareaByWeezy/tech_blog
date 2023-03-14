@@ -78,12 +78,10 @@ globalStyle(`input, button, textarea, select`, {
 
 globalStyle(`p, h1, h2, h3, h4, h5, h6`, {
   overflowWrap: `break-word`,
-  all: 'unset',
 });
 
 globalStyle('ul, li', {
   listStyle: 'none',
-  all: 'unset',
 });
 
 globalStyle('a', {
@@ -94,4 +92,50 @@ globalStyle('a', {
 globalStyle('.iconButton > svg', {
   width: '100%',
   height: '100%',
+});
+
+//FOR BLOG
+globalStyle('.post', {
+  color: vars.color.text_base,
+});
+
+globalStyle('.post > blockquote', {
+  margin: vars.space.s5,
+  borderLeft: `4px solid ${vars.color.primary}`,
+  borderTopRightRadius: '4px',
+  borderBottomRightRadius: '4px',
+  background: vars.color.subBg,
+  padding: '1rem 1rem 1rem 2rem',
+});
+
+globalStyle('.post > pre', {
+  backgroundColor: vars.color.subBg,
+  padding: vars.space.s15,
+  margin: `${vars.space.s20} 0`,
+  overflow: 'auto',
+});
+globalStyle('.post > p', {
+  lineHeight: '1.5',
+  margin: `${vars.space.s15} 0`,
+});
+
+globalStyle('.post > h1', {
+  fontSize: vars.fontSize.headline,
+  color: vars.color.tertiary,
+  margin: `${vars.space.s30} auto`,
+});
+
+globalStyle('.post > h2', {
+  fontSize: vars.fontSize.h1,
+  color: vars.color.blue4,
+  margin: `${vars.space.s20} auto`,
+});
+
+globalStyle('.post > h3', {
+  fontSize: vars.fontSize.h3,
+  margin: `${vars.space.s15} auto`,
+});
+
+globalStyle('.post > p > img', {
+  margin: `${vars.space.s15} auto`,
 });

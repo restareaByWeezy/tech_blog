@@ -2,9 +2,170 @@
 title: testing
 date: 2023-03-7
 description: test
-image: https://images.unsplash.com/photo-1654863075380-5fce8cae1851?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDMyfGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+image: https://velog.velcdn.com/images/restarea/post/58afa61e-e6a0-462e-afd4-0864133c6537/image.png
 ---
 
 ### test
 
-![image](https://images.unsplash.com/photo-1654863075380-5fce8cae1851?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDMyfGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60')
+![](https://velog.velcdn.com/images/restarea/post/58afa61e-e6a0-462e-afd4-0864133c6537/image.png)
+
+> 해당 글은 무겁고 사이즈가 큰 프로젝트를 진행함에 앞서 server state를 어떤식으로 일관되게 가독성있게 관리하여 효율적인 작업이 가능할까를 고민하며 react query를 이용한 server state 관리법과 폴더구조, 설계등을 담은 글로서 하나의 의견으로 봐주시면 감사드리겠습니다.
+
+## 배경
+
+리액트를 이용해 웹 어플리케이션을 만드는데 있어 서버에서 데이터를 주고 받는 것은 불가결한 행위이며 이에 대한 고민을 끝없이 해왔다.
+
+a. 서버에 api call을 날려 이를 useState를 통해 담는다. 형제 관계에 있는 컴포넌트나 여러 떨어진 곳에 위치한 컴포넌트에서 같은 데이터를 필요로 할 때 우리는 전역 store에 해당 state를 등록한다. post등의 call을 날리는 경우에는 api call + state를 다시 변경해주는 코드를 작성해야한다.
+
+위의 방법론은 가장 기초가 되는 server state를 다루는 방법이었고 해가 거듭할수록 웹은 많은 인터랙션을 요구했고 많은 데이터를 담을 수 밖에 없었다. 점점 사이즈는 커졌고 이에 따라 관리해야하는 state도 늘어났다.
+
+> 리액트 쿼리의 등장은 복잡한 server state를 좀 더 깔끔하게 관리해주는 계기가 되었고 전역 상태에 대한 관리법에 대한 고민을 덜어주었다. 돌이켜보니 대부분의 전역 상태는 서버에서 기인되었던 것이다. redux thunk와 같은 복잡함에서 벗어나 recoil, zotai와 같은 아톰 패턴의 상태 관리 라이브러리들이 조명받는 계기가 되었다.
+
+## react query에 대해.
+
+### react query를 접하면 처음 useQuery와 마주하게된다.
+
+```
+ const { data, isLoading } = useQuery(['queryKey'], fetchSomething,
+  );
+```
+
+첫 인상이 어땠나요?<br />
+<br />
+다음 코드를 통해 조금 더 살펴봅니다.<br />
+<br />
+```
+//react query
+const [page, setPage] = useState(0)
+const {data} = useQuery([page],()=>fetchSomething(page))
+
+//with normal useState
+const [page, setPage] = useState(0)
+const [data, setData] = useState([])
+
+  useEffect(() => {
+    const newData = fetchSomething(page)
+    setData(newData)
+  }, [page])
+```
+
+useEffect와 useState 더 나아가 전역 스토어에 저장하는 방식에서
+react-query방식으로 바꿈으로서 우리는 위 코드에서 우선 2가지 이점을
+얻을 수있습니다.
+
+1. 단순 코드량.
+2. server state 분리를 통한 코드 가독성
+
+### 전역 관리로서의 react query
+
+useQuery를 잠시 살펴봅니다.
+첫 번째 파라미터로 무언가 배열을 받고있습니다.
+쿼리키라고 칭하는 이것은 recoil의 키와 비슷한 느낌으로 키로 구별해 store에 저장합니다.
+다만 리코일과 다르게 복수의 키를 가질 수 있습니다.(배열)
+두 번째 인자인 fetch함수의 결과값을 data에 담아 쿼리클라이언트에 담깁니다.
+
+### 캐싱 관리
+
+리액트 쿼리에는 몇 가지 규칙에 따라 fetch함수를 재호출할지 결정합니다.
+또 몇 가지 설정에 따라 해당 키를 가진 data가 상했는지 아닌지를 판단합니다.
+상했다면 재호출됩니다.
+
+규칙과 활용에 대해서는 본 글의 주제와 멀어지므로 이해하고 있다고 가정하고 넘어가겠습니다.
+
+## 리액트 쿼리를 이용한 설계에 대해
+
+드디어 본론입니다!
+
+다양한 기능을 제공하는만큼 일관되고 스마트하게 활용하기 위해 많은 고민을 하게 되었습니다.
+
+대략적인 구조는
+
+컴포넌트에서는 custom hook으로 래핑된 useQuery 혹은 useMutation 훅을 불러오고 useQuery의 fetch함수들은 services라는 폴더에 페이지 단위로 파일을 만들어 관리합니다.
+
+다음 코드는 services 코드에 정의된 fetcher함수들입니다.
+
+```
+// /services/somethings.ts
+
+export const getSomething = async (id: string) => {
+  const data = await axios.get(`/api/something?id=${id}`).then((res) => res.data);
+  return data;
+};
+
+export const addSomething = async (content) => {
+  await axios.post('/api/something', content);
+};
+
+```
+
+이 함수들을 custom query hook에서 호출해줍니다.
+
+```
+// pages/Something/_queries.ts
+
+export const useSomethingQuery = (id: string) => {
+  const { data, isLoading } = useQuery(['/something', id], () =>
+    getSomething(id),
+  );
+  return {
+    somethingData: data,
+    isLoading,
+  };
+};
+
+export const useSomethingMutation = (content) => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(() => addSomething(content), {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/something'] });
+    },
+  });
+
+  return {
+    mutateWidgetConfig: mutate,
+  };
+};
+
+```
+
+```
+// SomeComponent.jsx
+
+...
+
+const { somethingData, isLoading} = useSomethingQuery('someId')
+
+const somethingsList = somethingData.map((something)=> {
+  return (
+  <li key={something}>{something}<li>
+  )
+})
+
+return (
+  <div>
+    {isLoading ?
+      (<span>...loading</span>)
+      : (<ul>{somethingsList}</ul>)
+  </div>
+)
+
+```
+
+- 여기서 알려드리고 싶은 점은 useMutation콜입니다.
+  기존에 매번 post를 할 때 데이터를 갱신해주기 위해 post콜과 setState를 묶어 코드를 작성하였습니다. useMutation에는 한 가지 주의해야 할 점이 있는데 바로 query키에 변동이 없기 때문에 refetching이 이루어지지 않는다는 점입니다.
+  위에 예시는 post call이 성공함에 따라 query key를 날려버려서 다시 조회하게 만드는 방법입니다.
+
+> 데이터량이 많거나 연산이 무겁거나 mutation call이 빈번할 경우 성공시 refetching해오는 대신 쿼리 데이터만 바꿔주는 방법도 있습니다.
+
+이런식으로 구성한데는 몇 가지 이유가 있습니다.
+
+a. 근간이 되는 원칙은 컴포넌트에서는 최대한 간결하고 깔끔하고 직관적이게입니다. 우리는 컴포넌트에서 useSomethingQuery가 어떤식의 로직으로 돌아가는지 알 필요가 없습니다.
+로직 수정은 오로지 queries파일에서 이루어집니다.
+
+b. 해당 방식은 마치 파라미터를 넣으면 원하는 데이터가 나오는 단순 함수처럼 보여집니다. 컴포넌트 레벨에서의 코드량을 줄일 수 있으며 직관적입니다.
+
+c. queries파일은 컴포넌트에서 직접적으로 사용되기 때문에 메인테이너인 tkdodo의 의견에 따라 같은 레벨의 폴더에 co-locating 시켜주었습니다.
+
+d. 반대로 fetch함수들은 page 단위별로 조회할 일이 많고 api 목록을 한꺼번에 조회할 일도 많았기 때문에 services폴더에 기능 혹은 페이지 단위로 파일을 만들어 모듈화하여 관리합니다.
+
+> 현재도 더 나은 구조에 대해 고민중에 있으며 이 글에서 소개드린 방식은 현재까지 사용했던 방식중 가장 직관적이고 괜찮다고 생각하여 소개하게 되었습니다.

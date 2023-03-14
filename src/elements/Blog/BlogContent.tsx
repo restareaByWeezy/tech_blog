@@ -7,13 +7,7 @@ const BlogContent = ({ posts }: BlogStaticProps) => {
     <div>
       <div>
         {posts.map(post => (
-          <BlogPost
-            date={post.date}
-            title={post.title}
-            des={post.description}
-            slug={post._raw.flattenedPath}
-            key={post._id}
-          />
+          <BlogPost key={post._id} post={post} />
         ))}
       </div>
     </div>
