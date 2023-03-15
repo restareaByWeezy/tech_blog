@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+import { animateGlow } from '@/styles/animation.css';
 import { bpStyle } from '@/styles/responsive.css';
 import { vars } from '@/styles/vars.css';
 

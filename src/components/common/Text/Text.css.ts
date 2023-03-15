@@ -52,6 +52,9 @@ const variants = {
     colorSecondary: {
       color: vars.color.secondary,
     },
+    colorTertiary: {
+      color: vars.color.tertiary,
+    },
   },
   weight: {
     semiBold: {

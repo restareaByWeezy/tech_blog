@@ -9,7 +9,9 @@ export const container = style([
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    maxHeight: '100vh',
+    height: '100%',
+    maxWidth: '768px',
+    minHeight: '100vh',
     flex: '1',
   },
 ]);
@@ -20,7 +22,7 @@ export const header = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   height: '100px',
-  padding: '0 50px',
+  padding: '10px 50px',
 });
 
 export const menuButton = style([
@@ -39,7 +41,18 @@ export const content = style({
   height: '100%',
   flex: '1',
   padding: `${vars.space.s60} ${vars.space.s40} 0 ${vars.space.s40}`,
-  overflowY: 'auto',
 });
 
-export const footer = style({});
+export const footer = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100px',
+  padding: '10px 50px',
+  gap: vars.space.s10,
+});
+
+export const link = style({
+  width: '40px',
+  height: '40px',
+});

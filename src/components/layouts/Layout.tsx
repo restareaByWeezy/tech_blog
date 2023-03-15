@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { ReactNode, useReducer } from 'react';
 
-import { IconHamburger } from '@/assets/svg';
+import { IconGithub, IconHamburger, IconLinkedIn } from '@/assets/svg';
 import { useIsMobile } from '@/hooks/useReponsive';
 import { cx } from '@/styles/classNames';
 import { vars } from '@/styles/vars.css';
@@ -22,9 +23,13 @@ const Layout = ({ content }: LayoutProps) => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Text size="h2" weight="bold">
-          chillinmice.dev
-        </Text>
+        <Link href="/" passHref>
+          <a>
+            <Text size="h2" weight="bold">
+              chillinmice.dev
+            </Text>
+          </a>
+        </Link>
         {isMobile && (
           <>
             <button
@@ -47,7 +52,18 @@ const Layout = ({ content }: LayoutProps) => {
         )}
       </header>
       <main className={styles.content}>{content}</main>
-      <footer className={styles.header}>footer</footer>
+      <footer className={styles.footer}>
+        <Link href="https://github.com/restareaByWeezy" passHref>
+          <a className={styles.link}>
+            <IconGithub />
+          </a>
+        </Link>
+        <Link href="https://www.linkedin.com/in/easurmind" passHref>
+          <a className={styles.link}>
+            <IconLinkedIn />
+          </a>
+        </Link>
+      </footer>
     </div>
   );
 };

@@ -4,9 +4,11 @@ import IconBack from './iconBack.svg';
 import IconCaret from './iconCaret.svg';
 import IconCloseGray from './iconCloseGray.svg';
 import IconDelete from './iconDelete.svg';
+import IconGithub from './iconGithub.svg';
 import IconHamburger from './iconHamburger.svg';
 import IconHeart from './iconHeart.svg';
 import IconHeartFilled from './iconHeartFilled.svg';
+import IconLinkedIn from './iconLinkedIn.svg';
 import IconMessage from './iconMessage.svg';
 import IconMoreHori from './iconMoreHori.svg';
 import IconMoreVert from './iconMoreVert.svg';
@@ -23,9 +25,11 @@ export {
   IconCaret,
   IconCloseGray,
   IconDelete,
+  IconGithub,
   IconHamburger,
   IconHeart,
   IconHeartFilled,
+  IconLinkedIn,
   IconMessage,
   IconMoreHori,
   IconMoreVert,

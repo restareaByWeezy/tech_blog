@@ -2,8 +2,6 @@ import { globalFontFace, globalStyle } from '@vanilla-extract/css';
 
 import { vars } from '@/styles/vars.css';
 
-import { text } from './../components/common/Text/Text.css';
-
 globalFontFace('GmarketSansMedium', {
   src: 'url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff)',
 });
@@ -31,6 +29,7 @@ globalStyle('body', {
 globalStyle('#__next', {
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   width: '100%',
   height: '100%',
   isolation: `isolate`,

@@ -13,23 +13,26 @@ interface BlogPostProps {
 const BlogPost = ({ post }: BlogPostProps) => {
   return (
     <Link href={`/blog/${post._raw.flattenedPath}`} key={post._id} passHref>
-      <a>
-        <Card size="full">
-          <figure className={styles.thumbnailWrapper}>
-            <Image
-              className={styles.thumbnail}
-              layout="fill"
-              src={post.image}
-              alt={post.title}
-            />
-          </figure>
-          <Text type="h2" size="h3" weight="semiBold">
-            {post.title}
-          </Text>
-          <Text>{post.description}</Text>
-          <Text>{post.date}</Text>
-        </Card>
-      </a>
+      <div className={styles.glowParent}>
+        <a>
+          <Card size="full" className={styles.cardWrapper}>
+            <figure className={styles.thumbnailWrapper}>
+              <Image
+                className={styles.thumbnail}
+                layout="fill"
+                src={post.image}
+                alt={post.title}
+              />
+            </figure>
+            <Text type="h2" size="h3" weight="semiBold">
+              {post.title}
+            </Text>
+            <Text>{post.description}</Text>
+            <Text>{post.date}</Text>
+          </Card>
+        </a>
+        <div className={styles.glowBox}></div>
+      </div>
     </Link>
   );
 };

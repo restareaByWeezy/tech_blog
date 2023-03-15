@@ -3,7 +3,7 @@ import Lottie from 'react-lottie-player';
 import { spinner } from '@/assets/lotties';
 import { cx } from '@/styles/classNames';
 
-import * as styles from './Loader.css';
+import * as styles from './loader.css';
 
 interface LoaderProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
