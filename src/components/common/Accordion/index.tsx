@@ -22,13 +22,13 @@ const Accordion = ({
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen((prev) => !prev);
+    setOpen(prev => !prev);
   };
 
-  const itemList = items?.map((item) => {
+  const itemList = items?.map(item => {
     const handleChange = () => {
       if (selections.includes(item)) {
-        setSelections(selections.filter((selection) => selection !== item));
+        setSelections(selections.filter(selection => selection !== item));
       } else {
         setSelections([...selections, item]);
       }

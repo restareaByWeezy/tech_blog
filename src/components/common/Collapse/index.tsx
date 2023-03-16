@@ -13,7 +13,7 @@ const Collapse = ({ renderer, isLoading }: CollapseProps) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen((prev) => !prev);
+    setOpen(prev => !prev);
   };
 
   return (

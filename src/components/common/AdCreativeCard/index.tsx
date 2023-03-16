@@ -15,7 +15,7 @@ interface AdCreativeCardProps {
 }
 
 const AdCreativeCard = ({ img, metrics }: AdCreativeCardProps) => {
-  const metricList = metrics.map((metric) => {
+  const metricList = metrics.map(metric => {
     return (
       <li className={styles.metricsList} key={metric.name}>
         <Text>{metric.label}</Text>

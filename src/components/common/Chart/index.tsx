@@ -25,7 +25,7 @@ const Chart = ({ type, chartConfigs }: ChartProps) => {
       defaultChartType={type}
       query={cubeQuery}
       cubejsApi={cubejsApi}
-      render={(renderers) => {
+      render={renderers => {
         const { resultSet, loadingState } = renderers;
 
         if (loadingState?.isLoading) {

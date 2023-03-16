@@ -41,7 +41,7 @@ const Select = ({
   value,
   onChange,
 }: SelectProps) => {
-  const itemList = items.map((item) => {
+  const itemList = items.map(item => {
     return (
       <SelectItem key={item} className={styles.selectItem} value={item}>
         {item}

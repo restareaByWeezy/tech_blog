@@ -34,7 +34,7 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
   const handleClickItem = (e: MouseEvent<HTMLLIElement>) => {
     const { itemvalue, itemlabel } = e.currentTarget.dataset;
     if (!itemvalue) return;
-    setValue((prev) => ({
+    setValue(prev => ({
       ...prev,
       [objKey]: { value: itemvalue, label: itemlabel },
     }));
@@ -55,7 +55,7 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
     };
   }, []);
 
-  const itemList = items.map((item) => {
+  const itemList = items.map(item => {
     return (
       <li
         data-itemvalue={item.value}
@@ -73,7 +73,7 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
   return (
     <div className={styles.wrapper} ref={ref}>
       <button
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setOpen(prev => !prev)}
         className={styles.selectTrigger}
       >
         <div className={styles.selectValue}>{value.label}</div>

@@ -21,7 +21,7 @@ interface LineChartProps {
 
 const LineChart = ({ resultSet }: LineChartProps) => {
   //FIX: NEED TO DISCUSS WITH BACKEND TEAM
-  const data = resultSet?.chartPivot().map((item) => {
+  const data = resultSet?.chartPivot().map(item => {
     return {
       ...item,
       x: tickFormatter(item.x),

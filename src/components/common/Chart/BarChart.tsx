@@ -23,7 +23,7 @@ interface BarChartProps {
 
 const BarChart = ({ resultSet, data, infos }: BarChartProps) => {
   //FIX: NEED TO DISCUSS WITH BACKEND TEAM
-  const cubeData = resultSet?.chartPivot().map((item) => {
+  const cubeData = resultSet?.chartPivot().map(item => {
     return {
       ...item,
       x: tickFormatter(item.x),

@@ -66,7 +66,7 @@ export function Pagination({
         <ChevronLeftIcon aria-hidden="true" />
       </button>
       <div className={styles.pages}>
-        {range(firstPage, rangeLastPage)?.map((_page) => (
+        {range(firstPage, rangeLastPage)?.map(_page => (
           <div key={_page}>
             <button
               data-selected={_page === activePage}
