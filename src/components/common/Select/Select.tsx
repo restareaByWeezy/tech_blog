@@ -1,15 +1,7 @@
-import React, {
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-import { ChevronDownIcon } from '@/assets/svgs';
+import { IconChevronDown } from '@/assets/svg';
 
-import Text from '../Text/Text';
 import * as styles from './Select.css';
 
 type SelectType = {
@@ -32,16 +24,9 @@ interface SelectProps<T> {
   selectorKeys: Array<keyof T>;
 }
 
-const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
-  const [open, setOpen] = useState(false);
+const Select = <T,>({ value }: SelectProps<T>) => {
+  const [, setOpen] = useState(false);
   const ref = useRef<ValidRefTarget>(null);
-
-  const handleClickItem = (e: MouseEvent<HTMLLIElement>) => {
-    const { itemvalue } = e.currentTarget.dataset;
-    if (!itemvalue) return;
-    setValue(prev => ({ ...prev, [objKey]: itemvalue }));
-    setOpen(false);
-  };
 
   useEffect(() => {
     const handleOutsideClick = (e: Event) => {
@@ -57,20 +42,6 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
     };
   }, []);
 
-  const itemList = items.map(item => {
-    return (
-      <li
-        data-itemvalue={item.value}
-        onClick={handleClickItem}
-        key={item.label}
-        className={styles.selectItem}
-        value={item.label}
-      >
-        {item.label}
-      </li>
-    );
-  });
-
   return (
     <div className={styles.wrapper} ref={ref}>
       <button
@@ -78,7 +49,7 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
         className={styles.selectTrigger}
       >
         <div className={styles.selectValue}>{value.label}</div>
-        <ChevronDownIcon />
+        <IconChevronDown />
       </button>
     </div>
   );

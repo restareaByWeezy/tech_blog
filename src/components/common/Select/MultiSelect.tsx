@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import { ChevronDownIcon } from '@/assets/svgs';
+import { IconChevronDown } from '@/assets/svg';
 
 import * as styles from './Select.css';
 
@@ -77,7 +77,7 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
         className={styles.selectTrigger}
       >
         <div className={styles.selectValue}>{value.label}</div>
-        <ChevronDownIcon />
+        <IconChevronDown />
       </button>
       {open && (
         <div className={styles.selectContent}>

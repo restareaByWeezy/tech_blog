@@ -1,5 +1,6 @@
 import { get } from 'lodash';
-import { cx } from 'styles/classNames';
+
+import { cx } from '@/styles/classNames';
 
 import { ColumnProps } from './table';
 import * as styles from './Table.css';

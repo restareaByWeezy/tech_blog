@@ -1,11 +1,6 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleLeftIcon,
-  DoubleRightIcon,
-} from '@/assets/svgs';
+import { IconChevronLeft, IconChevronRight } from '@/assets/svg';
 import { cx } from '@/styles/classNames';
-import { range } from '@/utils';
+import { range } from '@/utils/range';
 
 import type { PaginationProps } from './pagination';
 import * as styles from './Pagination.css';
@@ -55,7 +50,7 @@ export function Pagination({
         onClick={onClickFirstPage}
         aria-label="첫 페이지로 이동"
       >
-        <DoubleLeftIcon aria-hidden="true" />
+        <IconChevronLeft aria-hidden="true" />
       </button>
       <button
         className={styles.pageButton}
@@ -63,7 +58,7 @@ export function Pagination({
         onClick={onClickPrevPage}
         aria-label="이전 페이지로 이동"
       >
-        <ChevronLeftIcon aria-hidden="true" />
+        <IconChevronLeft aria-hidden="true" />
       </button>
       <div className={styles.pages}>
         {range(firstPage, rangeLastPage)?.map(_page => (
@@ -85,7 +80,7 @@ export function Pagination({
         onClick={onClickNextPage}
         aria-label="다음 페이지로 이동"
       >
-        <ChevronRightIcon aria-hidden="true" />
+        <IconChevronRight aria-hidden="true" />
       </button>
       <button
         className={styles.pageButton}
@@ -93,7 +88,7 @@ export function Pagination({
         onClick={onClickLastPage}
         aria-label="마지막 페이지로 이동"
       >
-        <DoubleRightIcon aria-hidden="true" />
+        <IconChevronRight aria-hidden="true" />
       </button>
     </nav>
   );

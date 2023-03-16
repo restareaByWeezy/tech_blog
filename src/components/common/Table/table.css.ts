@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from 'styles/vars.css';
+
+import { vars } from '@/styles/vars.css';
 
 export const table = style({
   flex: '1',

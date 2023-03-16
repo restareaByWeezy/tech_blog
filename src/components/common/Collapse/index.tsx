@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 
-import { CarretDownIcon, CarretRightIcon } from '@/assets/svgs';
+import { IconCaretDown, IconCaretRight } from '@/assets/svg';
 
 import Loader from '../Lottie/Loader';
 
@@ -20,15 +20,7 @@ const Collapse = ({ renderer, isLoading }: CollapseProps) => {
     <div>
       <div>title</div>
       <div onClick={handleClick}>
-        {open ? (
-          isLoading ? (
-            <Loader />
-          ) : (
-            <CarretRightIcon />
-          )
-        ) : (
-          <CarretDownIcon />
-        )}
+        {open ? isLoading ? <Loader /> : <IconCaretRight /> : <IconCaretDown />}
       </div>
       {open && !isLoading && renderer}
     </div>

@@ -1,16 +1,10 @@
 import * as RadixToast from '@radix-ui/react-toast';
 import { ReactNode } from 'react';
 
-import {
-  DangerColorIcon,
-  InfoColorIcon,
-  SuccessColorIcon,
-  WarningColorIcon,
-} from '@/assets/svgs';
 import { vars } from '@/styles/vars.css';
 
 import Row from '../_Grid/Row';
-import * as styles from './styles/Toast.css';
+import * as styles from './styles/toast.css';
 
 interface ToastProps {
   openToast: boolean;
@@ -32,22 +26,8 @@ const Toast = ({
   action,
   close,
   closeStyle,
-  type,
   direction = 'up',
 }: ToastProps) => {
-  const renderIcon = () => {
-    switch (type) {
-      case 'success':
-        return <SuccessColorIcon />;
-      case 'error':
-        return <DangerColorIcon />;
-      case 'warning':
-        return <WarningColorIcon />;
-      case 'info':
-        return <InfoColorIcon />;
-    }
-  };
-
   return (
     <RadixToast.Provider duration={1500} swipeDirection={direction}>
       <RadixToast.Root
@@ -59,7 +39,6 @@ const Toast = ({
       >
         <RadixToast.Title className={styles.toastTitle}>
           <Row gap={vars.space.s10} full align="center">
-            {type && renderIcon()}
             {title}
           </Row>
         </RadixToast.Title>
