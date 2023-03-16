@@ -1,10 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { bpStyle } from '@/styles/responsive.css';
 import { vars } from '@/styles/vars.css';
 
-import { bpStyle } from './../../../styles/responsive.css';
-import { toastRoot } from './ToastRoot.css';
+import { toastRoot } from './toastRoot.css';
 import { toastHeight, toastWidth, viewportPadding } from './vars.css';
 
 const toastViewport = recipe({
