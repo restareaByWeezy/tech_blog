@@ -3,7 +3,7 @@ import { cx } from '@/styles/classNames';
 import { range } from '@/utils/range';
 
 import type { PaginationProps } from './pagination';
-import * as styles from './Pagination.css';
+import * as styles from './pagination.css';
 import usePagination from './usePagination';
 
 export function Pagination({
