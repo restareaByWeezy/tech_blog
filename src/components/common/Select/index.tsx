@@ -4,7 +4,7 @@ import cx from 'classnames';
 import React, { forwardRef } from 'react';
 
 import Text from '../Text/Text';
-import * as styles from './Select.css';
+import * as styles from './SelectStyle.css';
 
 interface SelectItemProps extends RadixSelect.SelectItemProps {
   children: React.ReactNode;

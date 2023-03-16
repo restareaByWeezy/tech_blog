@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import { IconChevronDown } from '@/assets/svg';
 
-import * as styles from './Select.css';
+import * as styles from './SelectStyle.css';
 
 type SelectType = {
   value: string;
