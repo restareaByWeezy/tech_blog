@@ -1,4 +1,4 @@
-import React, { forwardRef, InputHTMLAttributes, Ref } from 'react';
+import React, { forwardRef, InputHTMLAttributes } from 'react';
 
 import { cx } from '@/styles/classNames';
 
