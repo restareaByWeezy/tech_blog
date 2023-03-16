@@ -2,7 +2,7 @@ import cx from 'classnames';
 import { HTMLAttributes, ReactNode } from 'react';
 
 import { col } from '../_Grid/grid.css';
-import * as styles from './Card.css';
+import * as styles from './CardStyle.css';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   size?: 'sm' | 'md' | 'lg' | 'full';
