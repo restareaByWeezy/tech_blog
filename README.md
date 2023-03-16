@@ -1,2 +1,2 @@
 ### USING
-Radix ui, stitches css, zustand
+next.js, contentlayer, typescript, vanilla-extract css
