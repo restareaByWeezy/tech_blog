@@ -24,7 +24,7 @@ const Layout = ({ content }: LayoutProps) => {
     <div className={styles.container}>
       <header className={styles.header}>
         <Link href="/" passHref>
-          <a>
+          <a className={styles.logo}>
             <Text size="h2" weight="bold">
               chillinmice.dev
             </Text>

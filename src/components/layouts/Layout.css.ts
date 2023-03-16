@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+import { violetNeon } from '@/styles/animation.css';
 import { vars } from '@/styles/vars.css';
 
 import { bpStyle } from './../../styles/responsive.css';
@@ -23,6 +24,16 @@ export const header = style({
   justifyContent: 'space-between',
   height: '100px',
   padding: '10px 50px',
+});
+
+export const logo = style({
+  color: 'white',
+  selectors: {
+    '&:hover': {
+      cursor: 'pointer',
+      animation: `${violetNeon} 2s ease-in-out infinite alternate`,
+    },
+  },
 });
 
 export const menuButton = style([
