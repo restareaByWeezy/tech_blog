@@ -1,7 +1,8 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 import * as RadixSelect from '@radix-ui/react-select';
-import cx from 'classnames';
 import React, { forwardRef } from 'react';
+
+import { cx } from '@/styles/classNames';
 
 import Text from '../Text/Text';
 import * as styles from './SelectStyle.css';

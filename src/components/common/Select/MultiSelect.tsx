@@ -1,3 +1,4 @@
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 import React, {
   Dispatch,
   MouseEvent,
@@ -6,8 +7,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-
-import { IconChevronDown } from '@/assets/svg';
 
 import * as styles from './SelectStyle.css';
 
@@ -77,7 +76,7 @@ const Select = <T,>({ items, value, setValue, objKey }: SelectProps<T>) => {
         className={styles.selectTrigger}
       >
         <div className={styles.selectValue}>{value.label}</div>
-        <IconChevronDown />
+        <ChevronDownIcon />
       </button>
       {open && (
         <div className={styles.selectContent}>

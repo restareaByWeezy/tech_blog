@@ -1,6 +1,5 @@
+import { CaretDownIcon, CaretRightIcon } from '@radix-ui/react-icons';
 import { ReactNode, useState } from 'react';
-
-import { IconCaretDown, IconCaretRight } from '@/assets/svg';
 
 import Loader from '../Lottie/Loader';
 
@@ -20,7 +19,7 @@ const Collapse = ({ renderer, isLoading }: CollapseProps) => {
     <div>
       <div>title</div>
       <div onClick={handleClick}>
-        {open ? isLoading ? <Loader /> : <IconCaretRight /> : <IconCaretDown />}
+        {open ? isLoading ? <Loader /> : <CaretRightIcon /> : <CaretDownIcon />}
       </div>
       {open && !isLoading && renderer}
     </div>

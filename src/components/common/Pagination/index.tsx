@@ -1,4 +1,10 @@
-import { IconChevronLeft, IconChevronRight } from '@/assets/svg';
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+} from '@radix-ui/react-icons';
+
 import { cx } from '@/styles/classNames';
 import { range } from '@/utils/range';
 
@@ -50,7 +56,7 @@ export function Pagination({
         onClick={onClickFirstPage}
         aria-label="첫 페이지로 이동"
       >
-        <IconChevronLeft aria-hidden="true" />
+        <DoubleArrowLeftIcon aria-hidden="true" />
       </button>
       <button
         className={styles.pageButton}
@@ -58,7 +64,7 @@ export function Pagination({
         onClick={onClickPrevPage}
         aria-label="이전 페이지로 이동"
       >
-        <IconChevronLeft aria-hidden="true" />
+        <ChevronLeftIcon aria-hidden="true" />
       </button>
       <div className={styles.pages}>
         {range(firstPage, rangeLastPage)?.map(_page => (
@@ -80,7 +86,7 @@ export function Pagination({
         onClick={onClickNextPage}
         aria-label="다음 페이지로 이동"
       >
-        <IconChevronRight aria-hidden="true" />
+        <ChevronRightIcon aria-hidden="true" />
       </button>
       <button
         className={styles.pageButton}
@@ -88,7 +94,7 @@ export function Pagination({
         onClick={onClickLastPage}
         aria-label="마지막 페이지로 이동"
       >
-        <IconChevronRight aria-hidden="true" />
+        <DoubleArrowRightIcon aria-hidden="true" />
       </button>
     </nav>
   );
