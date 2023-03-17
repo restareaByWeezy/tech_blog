@@ -1,6 +1,5 @@
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-
-import { IconChevronDown } from '@/assets/svg';
 
 import * as styles from './SelectStyle.css';
 
@@ -49,7 +48,7 @@ const Select = <T,>({ value }: SelectProps<T>) => {
         className={styles.selectTrigger}
       >
         <div className={styles.selectValue}>{value.label}</div>
-        <IconChevronDown />
+        <ChevronDownIcon />
       </button>
     </div>
   );

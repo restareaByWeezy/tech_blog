@@ -1,7 +1,8 @@
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { ReactNode, useReducer } from 'react';
 
-import { IconGithub, IconHamburger, IconLinkedIn } from '@/assets/svg';
+import { IconGithub, IconLinkedIn } from '@/assets/svg';
 import { useIsMobile } from '@/hooks/useReponsive';
 import { cx } from '@/styles/classNames';
 import { vars } from '@/styles/vars.css';
@@ -36,7 +37,7 @@ const Layout = ({ content }: LayoutProps) => {
               onClick={toggleOpen}
               className={cx('iconButton', styles.menuButton)}
             >
-              <IconHamburger />
+              <HamburgerMenuIcon />
             </button>
             <MenuDrawer open={open} onOpenChange={toggleOpen} />
           </>
