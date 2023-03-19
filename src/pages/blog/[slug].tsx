@@ -4,11 +4,11 @@ import React from 'react';
 
 import BlogSlug from '@/elements/BlogSlug';
 
-const blogSlug = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <BlogSlug post={post} />
-);
+const BlogSlugPage = ({
+  post,
+}: InferGetStaticPropsType<typeof getStaticProps>) => <BlogSlug post={post} />;
 
-export default blogSlug;
+export default BlogSlugPage;
 
 export const getStaticPaths = async () => {
   return {

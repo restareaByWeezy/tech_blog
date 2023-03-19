@@ -1,5 +1,5 @@
 import Write from '@/elements/Write';
 
-const blog = () => <Write />;
+const WritePage = () => <Write />;
 
-export default blog;
+export default WritePage;

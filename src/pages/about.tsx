@@ -1,5 +1,5 @@
 import About from '@/elements/About';
 
-const about = () => <About />;
+const AboutPage = () => <About />;
 
-export default about;
+export default AboutPage;

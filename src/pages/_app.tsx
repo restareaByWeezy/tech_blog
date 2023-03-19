@@ -19,7 +19,7 @@ type ExtendedAppProps<P = object> = {
   err?: NextPageContext['err'];
 } & AppProps<P>;
 
-const MyApp = ({ Component, pageProps }: ExtendedAppProps<PageProps>) => {
+const App = ({ Component, pageProps }: ExtendedAppProps<PageProps>) => {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -39,4 +39,4 @@ const MyApp = ({ Component, pageProps }: ExtendedAppProps<PageProps>) => {
   );
 };
 
-export default MyApp;
+export default App;

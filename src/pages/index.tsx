@@ -3,11 +3,11 @@ import { InferGetStaticPropsType } from 'next';
 
 import Home from '@/elements/Home';
 
-const home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <Home posts={posts} />
-);
+const HomePage = ({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) => <Home posts={posts} />;
 
-export default home;
+export default HomePage;
 
 export const getStaticProps = async () => {
   const posts = allPosts.sort(
