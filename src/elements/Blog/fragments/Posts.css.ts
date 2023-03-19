@@ -18,3 +18,16 @@ export const articlesWrapper = style([
     gridTemplateColumns: '1fr',
   },
 ]);
+
+export const card = style({});
+
+export const thumbnailWrapper = style({
+  position: 'relative',
+  width: '100%',
+  aspectRatio: '16/9',
+  maxHeight: '200px',
+});
+
+export const thumbnail = style({
+  objectFit: 'cover',
+});

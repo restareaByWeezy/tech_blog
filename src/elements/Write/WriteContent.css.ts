@@ -1,10 +1,14 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 import { vars } from '@/styles/vars.css';
 
 export const editorWrapper = style({
+  display: 'flex',
+  flex: '1',
   width: '100%',
-  height: 'calc(100vh - 100px)',
+  minHeight: '400px',
+  height: '100%',
+  color: vars.color.text_base,
 });
 
 export const buttonWrapper = style({
@@ -23,4 +27,31 @@ export const viewerWrapper = style({
 
 export const placeholder = style({
   color: vars.color.text_disabled,
+});
+
+globalStyle(`${editorWrapper} button`, {
+  border: 'none',
+});
+
+globalStyle(`${editorWrapper} .toastui-editor-main-container *`, {
+  color: `${vars.color.text_base}`,
+});
+
+globalStyle(`${editorWrapper} > div`, {
+  width: '100%',
+});
+
+globalStyle(`${editorWrapper} .toastui-editor-md-splitter`, {
+  background: vars.color.gray5,
+  width: '2px',
+});
+
+globalStyle(`${editorWrapper} .toastui-editor-defaultUI-toolbar`, {
+  backgroundColor: vars.color.gray3,
+});
+
+globalStyle(`${editorWrapper} .toastui-editor-defaultUI`, {
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
 });

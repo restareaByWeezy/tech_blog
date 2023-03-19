@@ -64,7 +64,7 @@ export function Pagination({
         onClick={onClickPrevPage}
         aria-label="이전 페이지로 이동"
       >
-        <IconChevronLeft aria-hidden="true" />
+        <ChevronLeftIcon aria-hidden="true" />
       </button>
       <div className={styles.pages}>
         {range(firstPage, rangeLastPage)?.map(_page => (
@@ -86,7 +86,7 @@ export function Pagination({
         onClick={onClickNextPage}
         aria-label="다음 페이지로 이동"
       >
-        <IconChevronRight aria-hidden="true" />
+        <ChevronRightIcon aria-hidden="true" />
       </button>
       <button
         className={styles.pageButton}

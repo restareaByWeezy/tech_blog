@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import '@toast-ui/editor/dist/toastui-editor.css';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor } from '@toast-ui/react-editor';
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Button from '@/components/common/Button';
 
@@ -27,10 +25,19 @@ const WriteContent = () => {
   const handleEditNote = () => {
     setIsEdit(true);
   };
+  const handleSave = () => {
+    setIsEdit(false);
+  };
 
-  useEffect(() => {
-    console.log(isEdit);
-  }, [isEdit]);
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (!isEdit) return;
+    if (e.key === 'Escape') {
+      setIsEdit(false);
+    }
+    if (e.key === 'Enter' && e.ctrlKey) {
+      handleSave();
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -38,19 +45,6 @@ const WriteContent = () => {
     }
   }, [isEdit]);
 
-  const handleSave = () => {
-    setIsEdit(false);
-  };
-
-  // const handleKeyDown = (e: KeyboardEvent) => {
-  //   if (!isEdit) return;
-  //   if (e.key === 'Escape') {
-  //     handleCancel();
-  //   }
-  //   if (e.key === 'Enter' && e.ctrlKey) {
-  //     handleSave();
-  //   }
-  // };
   const handleClickOutside = (e: MouseEvent) => {
     if (!isEdit) return;
     const target = e.target as HTMLElement;
@@ -66,51 +60,52 @@ const WriteContent = () => {
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
     return () => {
       document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   return (
-    <div className={styles.editorWrapper}>
-      {isEdit ? (
-        <>
-          <Editor
-            initialValue={contents}
-            previewStyle="vertical"
-            initialEditType="wysiwyg"
-            theme="dark"
-            useCommandShortcut={true}
-            plugins={[colorSyntax]}
-            height="100%"
-            ref={editorRef}
-            toolbarItems={[
-              ['heading', 'bold', 'italic', 'strike'],
-              ['hr', 'quote'],
-              ['ul', 'ol', 'task', 'indent', 'outdent'],
-              ['code', 'codeblock'],
-            ]}
-            onChange={onChange}
-          />
-          <div className={styles.buttonWrapper}>
-            <Button
-              type="button"
-              sizes="sm"
-              onClick={() => {
-                setIsEdit(!isEdit);
-              }}
-            >
-              취소
-            </Button>
-            <Button type="submit" sizes="sm" onClick={handleSave}>
-              저장
-            </Button>
-          </div>
-        </>
-      ) : (
-        <ContentsViewer contents={contents} handleEditNote={handleEditNote} />
-      )}
-    </div>
+    <>
+      <div className={styles.editorWrapper}>
+        <Editor
+          viewer
+          height="auto"
+          previewHighlight
+          initialValue={contents}
+          previewStyle="vertical"
+          initialEditType="markdown"
+          theme="dark"
+          hideModeSwitch
+          useCommandShortcut={true}
+          ref={editorRef}
+          toolbarItems={[
+            ['heading', 'bold', 'italic', 'strike'],
+            ['hr', 'quote'],
+            ['ul', 'ol', 'task', 'indent', 'outdent'],
+            ['code', 'codeblock'],
+          ]}
+          onChange={onChange}
+        />
+      </div>
+      <div className={styles.buttonWrapper}>
+        <Button
+          type="button"
+          sizes="sm"
+          onClick={() => {
+            setIsEdit(!isEdit);
+          }}
+        >
+          취소
+        </Button>
+        <Button type="submit" sizes="sm" onClick={handleSave}>
+          저장
+        </Button>
+      </div>
+    </>
   );
 };
 

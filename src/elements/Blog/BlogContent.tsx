@@ -1,16 +1,11 @@
-import BlogPost from '@/components/features/BlogPost';
-
 import { BlogStaticProps } from '.';
+import Posts from './fragments/Posts';
 
 const BlogContent = ({ posts }: BlogStaticProps) => {
   return (
-    <div>
-      <div>
-        {posts.map(post => (
-          <BlogPost key={post._id} post={post} />
-        ))}
-      </div>
-    </div>
+    <>
+      <Posts posts={posts} />
+    </>
   );
 };
 
