@@ -3,11 +3,11 @@ import Lottie from 'react-lottie-player';
 import { dev } from '@/assets/lotties';
 import Text from '@/components/common/Text/Text';
 
-import * as styles from './About.css';
+import * as styles from './Hero.css';
 
-const About = () => {
+const Hero = () => {
   return (
-    <div>
+    <section>
       <Text type="h1" size="h1" color="colorTertiary">
         Hi There!
       </Text>
@@ -20,8 +20,8 @@ const About = () => {
           play
         />
       </div>
-    </div>
+    </section>
   );
 };
 
-export default About;
+export default Hero;

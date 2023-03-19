@@ -1,11 +1,11 @@
 import { HomeStaticProps } from '.';
-import About from './fragments/About';
+import Hero from './fragments/Hero';
 import RecentPosts from './fragments/RecentPosts';
 
 const HomeContent = ({ posts }: HomeStaticProps) => {
   return (
     <>
-      <About />
+      <Hero />
       <RecentPosts posts={posts} />
     </>
   );
