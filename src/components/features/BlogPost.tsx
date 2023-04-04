@@ -11,7 +11,6 @@ interface BlogPostProps {
 }
 
 const BlogPost = ({ post }: BlogPostProps) => {
-  console.log('🚀 ~ file: BlogPost.tsx:14 ~ BlogPost ~ post:', post);
   return (
     <Link href={`/blog/${post._raw.flattenedPath}`} key={post._id} passHref>
       <div className={styles.glowParent}>
