@@ -5,7 +5,7 @@ import * as styles from './Menus.css';
 const Menus = () => {
   return (
     <>
-      <Link href="/" passHref>
+      <Link href="/about" passHref>
         <a className={styles.menuItem}>About</a>
       </Link>
       <Link href="/blog" passHref>

@@ -13,6 +13,7 @@ const nextConfig = {
       'images.unsplash.com',
       'media-exp1.licdn.com',
       'velog.velcdn.com',
+      'img.freepik.com',
     ],
     dangerouslyAllowSVG: true,
   },

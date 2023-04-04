@@ -99,7 +99,7 @@ globalStyle('.post', {
 });
 
 globalStyle('.post > blockquote', {
-  margin: vars.space.s5,
+  margin: `${vars.space.s20} ${vars.space.s5}`,
   borderLeft: `4px solid ${vars.color.primary}`,
   borderTopRightRadius: '4px',
   borderBottomRightRadius: '4px',
@@ -137,4 +137,10 @@ globalStyle('.post > h3', {
 
 globalStyle('.post > p > img', {
   margin: `${vars.space.s15} auto`,
+});
+
+globalStyle('.post > iframe', {
+  width: '100%',
+  height: '500px',
+  margin: `${vars.space.s20} 0`,
 });

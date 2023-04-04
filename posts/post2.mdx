@@ -1,0 +1,383 @@
+---
+title: 실용적인 데이터 시각화 for FE - 1. 테이블
+date: 2023-04-03
+description: data-visualization
+image: https://img.freepik.com/free-vector/futuristic-infographic-elements-concept_23-2148457430.jpg?w=1800&t=st=1680613692~exp=1680614292~hmac=f6c7b1ec709c1467d0a8bd5486cd3e99c072bbced42e83064ee4d341b6fc457e
+---
+
+> 본 시리즈는 프론트엔드 엔지니어로서 데이터 시각화에 대한 실용적이고 실무적인 내용을 다룬 글로 개인 경험을 토대로 작성되어 다소 주관적인 내용을 내포하고 있습니다.
+
+# 테이블
+테이블은 데이터 시각화 업무를 맡게 되었을 때 대부분 필수적으로 요구받는 구현 컴포넌트입니다. 관계 분석에 가장 적합하고 차트 컴포넌트 중 구현 난이도가 요구사항에 따라 천차만별이며 가장 어려운 영역에 속하기도 합니다.
+
+## 구현 방식
+> ## style
+
+
+### table tag
+* html의 table tag를 사용하는 방법으로서 아래와 같은 형태를 띕니다.
+
+//adriel demo
+![](https://velog.velcdn.com/images/restarea/post/103d8f3e-b6a1-46d4-86a2-f161c2dfe32b/image.png)
+
+//notion price
+![](https://velog.velcdn.com/images/restarea/post/fd84a1a1-a9f7-41f0-9805-7271033ad1d8/image.png)
+
+
+```
+<table>
+    <thead>
+        <tr>
+            <th>The table header</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The table body</td>
+            <td>with two columns</td>
+        </tr>
+    </tbody>
+</table>
+
+```
+
+* table tag를 사용하게 된다면 모든 것이 row기준으로 흘러가게 되며 열을 고려하면서 스타일링, 데이터 정재 및 삽입등을 신경써야합니다. 
+* 예를들어서 제목 열, 본문 열 상관없이 첫 번째 셀은 빨간색이어야 한다는 조건이 있다고 가정합시다.
+
+<iframe src="https://codesandbox.io/embed/table-example-1-58tl8v?fontsize=14&hidenavigation=1&theme=dark"
+     title="table example 1"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+각 tr의 nth child에 해당하는 요소를 찾아서 스타일링을 해주어야 합니다. 
+
+여기서 불편한 점은 외부에서 table 컴포넌트에 data를 넣어주고 내부에서 tr을 반복문으로 처리하여 한 줄 한 줄 쌓이는 형태가 되는데 index에 대한 정보를 토대로 필요한 열에 대한 스타일링을 해주어야 합니다.
+
+코드가 길어지고 햇갈릴 우려가 있습니다. 
+
+### grid
+* grid로 테이블을 구현할 수도 있습니다. 
+<iframe src="https://codesandbox.io/embed/table-example-2-3bzn4d?fontsize=14&hidenavigation=1&theme=dark"
+     title="table example 2"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+```
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 50px 50px;
+}
+```
+
+### flex div
+//binance
+![](https://velog.velcdn.com/images/restarea/post/ab6cc156-20ca-488d-b61f-7c4c7cf410da/image.png)
+
+* div와 flex요소를 이용해 row 기반의 스타일 커스텀이 많다면 row방식, col 기반의 스타일 커스텀이 많다면 col방식을 자유롭게 선택할 수 있습니다. 
+
+
+그렇다면 flex div나 grid 방식이 더 편해보이는데 많은 데이터 대시보드들을 운영하는 회사들은 table tag를 택합니다. 
+
+개인적으로 table tag를 사용하게 되는 큰 이유중 하나는 복사 + 붙혀넣기 했을 때 정확히 table로서 인식해 노션, 스프레드 시트등에 똑같은 모습으로 보여져야하기 때문입니다.
+
+> notion plan을 노션에 복사 붙혀넣기 한 모습 
+![](https://velog.velcdn.com/images/restarea/post/557afd34-abde-4037-a40d-f126e20c77e3/image.png)
+ 
+> 바이낸스에 있는 표를 노션에 복사 붙혀넣기 한 모습
+![](https://velog.velcdn.com/images/restarea/post/4e071ebf-63df-4415-84ae-6cd9aee5fdd4/image.png)
+
+> 따라서 해당 데이터를 사용하는 유저가 스프레드나 다른 곳에서 활용할 가능성이 높다면 table tag로 만들어주어야 합니다. 
+
+> ## component
+
+어떤 방식으로 설계할지 결정하였다면 데이터 파이프라인을 설계하고 이를 어떻게 prop으로 넘겨줄지 생각해보아야 합니다. 
+
+들어가기 앞서 다른 예제들을 살펴봅니다.
+
+### react-table
+
+<iframe src="https://codesandbox.io/embed/table-example3-1jzjg9?fontsize=14&hidenavigation=1&theme=dark"
+     title="table example3"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+> 각 셀에 해당하는 data와 이를 묶어줄 column을 정의합니다. 보통 데이터 타입을 column에 제너릭의 인자로 넣어주게끔 코드를 짭니다. 
+
+```tsx
+
+type Person = {
+  firstName: string
+  lastName: string
+  age: number
+  visits: number
+  status: string
+  progress: number
+}
+
+
+const defaultData: Person[] = [
+  {
+    firstName: 'tanner',
+    lastName: 'linsley',
+    age: 24,
+    visits: 100,
+    status: 'In Relationship',
+    progress: 50,
+  },
+  {
+    firstName: 'tandy',
+    lastName: 'miller',
+    age: 40,
+    visits: 40,
+    status: 'Single',
+    progress: 80,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+]
+
+const columnHelper = createColumnHelper<Person>()
+
+const columns = [
+  columnHelper.accessor('firstName', {
+    cell: info => info.getValue(),
+    footer: info => info.column.id,
+  }),
+  columnHelper.accessor(row => row.lastName, {
+    id: 'lastName',
+    cell: info => <i>{info.getValue()}</i>,
+    header: () => <span>Last Name</span>,
+    footer: info => info.column.id,
+  }),
+  columnHelper.accessor('age', {
+    header: () => 'Age',
+    cell: info => info.renderValue(),
+    footer: info => info.column.id,
+  }),
+  columnHelper.accessor('visits', {
+    header: () => <span>Visits</span>,
+    footer: info => info.column.id,
+  }),
+  columnHelper.accessor('status', {
+    header: 'Status',
+    footer: info => info.column.id,
+  }),
+  columnHelper.accessor('progress', {
+    header: 'Profile Progress',
+    footer: info => info.column.id,
+  }),
+]
+```
+> column에 보면 accessor라는 것이 등장하는데 각 column에 해당하는 data의 키 값을 바라보고 이들을 custom하기 위한 값입니다. 
+
+
+```tsx
+function App() {
+  const [data, setData] = React.useState(() => [...defaultData])
+  const rerender = React.useReducer(() => ({}), {})[1]
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return (
+    <div className="p-2">
+      <table>
+        <thead>
+       {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          {table.getFooterGroups().map(footerGroup => (
+            <tr key={footerGroup.id}>
+              {footerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.footer,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </tfoot>
+      </table>
+      <div className="h-4" />
+      <button onClick={() => rerender()} className="border p-2">
+        Rerender
+      </button>
+    </div>
+  )
+}
+
+const rootElement = document.getElementById('root')
+if (!rootElement) throw new Error('Failed to find the root element')
+
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+
+```
+
+> getHeaderGroups, getRowModel, getFooterGroups을 통해 header body footer에 해당하는 데이터들을 반복문을 통해 row단위로 랜더하는 로직입니다.
+
+### Mui data grid
+```tsx
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+
+const columns: GridColDef[] = [
+  { field: 'id', headerName: 'ID', width: 90 },
+  {
+    field: 'firstName',
+    headerName: 'First name',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'lastName',
+    headerName: 'Last name',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'age',
+    headerName: 'Age',
+    type: 'number',
+    width: 110,
+    editable: true,
+  },
+  {
+    field: 'fullName',
+    headerName: 'Full name',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    width: 160,
+    valueGetter: (params: GridValueGetterParams) =>
+      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  },
+];
+
+const rows = [
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+];
+
+export default function DataGridDemo() {
+  return (
+    <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </Box>
+  );
+}
+```
+> mui도 마찬가지로 비슷한 모습을 띄고 있습니다. col과 data를 매칭시키고 col에 대해서는 각종 필요 조건들에 대한 boolean을 작성합니다. 
+
+
+라이브러리의 뼈대는 비슷합니다. table tag의 구조대로 가기 때문에 row로 data를 묶고 각각의 col을 정의합니다. 
+
+
+## 테이블 컴포넌트를 만들 때 고려할 점
+테이블 라이브러리는 다른 라이브러리와 다르게 신중하게 사용해야합니다. 그 이유는 모든 상황을 상정해서 만들기 때문에 필요 이상으로 코드가 복잡하고 더러워질 확률이 상당히 높습니다. 
+
+저 또한 처음에는 headless인 react-table을 도입해서 사용해보았지만 시간에 지남에 따라 늘어나는 요구사항을 입맛대로 커스텀하는데 많은 어려움을 느꼈습니다. 또한 요구사항에 맞는 설계 구조가 있고 스타일 편의성이 있는데 라이브러리를 사용하는 순간 많은 부분이 강제됩니다. 
+
+타입을 사용한다면 더더욱 불편함을 느낄 수 있습니다. 정해진 flow 즉 타입대로 의도대로 컴포넌트를 설계하기 위해 중간에 또 raw data를 변형해야 하는 일이 종종 생기곤 합니다. 
+
+리액트에서 흔히 컴포넌트를 만들 때 재활용성에 대해 강조하곤 합니다. 하지만 경험상 테이블만큼은 재활용성을 너무 생각한 나머지 오버엔지니어링 하지 않는 것을 정말 중요하게 생각해야 합니다. 모든 경우의 수를 따지게 된다면 개발 기간이 딜레이 됨은 물론 몸체가 무거워진 컴포넌트가 되어 요구사항 변화에 유연할 수가 없습니다. 
+
+보통 프로젝트에서 요구사항이 다채로운 테이블을 요구하는 경우는 잘 없습니다. 대체로 비슷한 요구사항을 갖거나 기껏해야 boolean 1,2개로 분기를 처리할 수 있는 요구사항 정도가 커스텀됩니다. 따라서 모든 경우의 수를 고려하는 방향성보다는 프로젝트에 맞는 테이블 컴포넌트를 설계할 필요성이 있습니다. 
+
+## ADVANCED EXAMPLE
+> 최근에 구현했던 테이블 중에 구조와 요구사항의 난이도가 높았던 테이블이 있어 요구 사항을 정의하고 이에 맞게 설계하는 과정에 대해 설명드리고자 합니다. 
+
+### 요구 사항
+* 각 col은 dynamic하게 유저에 의해서 선택됩니다. 
+* 테이블은 tree 구조를 가지며 각 row를 누를때 마다 해당 row의 단계와 종류에 맞춰서 api를 호출하고 응답값을 nested 되게 바로 아래 띄워주어야 합니다.
+* tree의 deps를 결정은 유저에 의해 다이나믹하게 바뀌며 각 deps별 항목과 순서도 유저가 자유롭게 커스텀이 가능합니다. 
+
+### 구현
+* 결국 핵심은 tree 구조를 가진 테이블이며 모든것이 dynamic하게 변동되고 또 추가로 될 수 있다는 것을 염두해두었습니다. 
+
+```tsx TableRow.tsx
+    <>
+      <tr
+        data-hierarchyidx={hierarchyIdx}
+        data-id={data}>
+        {fetchedData.map((column, columnIndex) => (
+          <td />
+        ))}
+      </tr>
+      {open && (
+    //Calling parent component TableRows.tsx
+    {anotherData.map((row)=> {
+  	   <TableRow
+            hierarchyIdx={hierarchyIdx + 1}
+            hierarchies={hierarchies}
+            item={row}
+            columns={columns}
+          />
+  })
+    //
+      )}
+    </>
+
+```
+
+위 코드는 짧게 요약한 table body내부에 해당하는 내용입니다. 해당 구현사항을 재귀를 통해 구현하였습니다. 단계의 개수, 정보등에 따라 table의 deps를 구현해야함으로 외부에서 이를 배열(hierarchies) 그리고 각 tr에 data attribute로 인덱스를 전달합니다. 또한 각 row를 눌렀을 때 해당 row의 데이터에 기반해 api를 날려야함으로 마찬가지로 data attribute를 지정해주었습니다.
+
+해당 구현사항을 라이브러리를 이용하게 된다면 커스텀에 많은 제약이 있어 오히려 복잡해진 코드 구조가 될 수 있습니다. 또한 fetching해온 raw data의 구조를 라이브러리에 또 맞춰야하기 때문에 불편한 경우가 생길 수 있습니다. 
+
+> 이 처럼 요구사항이 복잡한 테이블일수록 요구사항을 파악은 물론 차후에 어느 방향으로 요구사항이 변동할 가능성이 큰 지 파악해 이에 대비해 컴포넌트를 설계해야합니다. 

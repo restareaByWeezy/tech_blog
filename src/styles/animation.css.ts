@@ -13,7 +13,7 @@ export const animateGlow = keyframes({
 export const textFadeIn = keyframes({
   from: {
     opacity: 0,
-    transform: 'translate3d(0, -20px, 0)',
+    transform: 'translate3d(0, 20px, 0)',
   },
   to: {
     opacity: 1,
