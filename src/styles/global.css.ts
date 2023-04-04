@@ -139,7 +139,7 @@ globalStyle('.post > p > img', {
   margin: `${vars.space.s15} auto`,
 });
 
-globalStyle('.post > iframe', {
+globalStyle('.post * >iframe', {
   width: '100%',
   height: '500px',
   margin: `${vars.space.s20} 0`,
