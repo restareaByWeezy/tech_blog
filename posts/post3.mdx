@@ -1,0 +1,180 @@
+---
+title: 실용적인 데이터 시각화 for FE - 2. 라인/파이/바 차트
+date: 2023-04-05
+description: data visualize
+image: https://img.freepik.com/free-vector/futuristic-infographic-elements-concept_23-2148457430.jpg?w=1800&t=st=1680613692~exp=1680614292~hmac=f6c7b1ec709c1467d0a8bd5486cd3e99c072bbced42e83064ee4d341b6fc457e
+---
+> 본 시리즈는 프론트엔드 엔지니어로서 데이터 시각화에 대한 실용적이고 실무적인 내용을 다룬 글로 개인 경험을 토대로 작성되어 다소 주관적인 내용을 내포하고 있습니다.
+
+<iframe src="https://codesandbox.io/embed/2-chart-examples-pm1l8o?fontsize=14&hidenavigation=1&theme=dark"
+     title="2-chart-examples"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+   
+# 기본 개념
+
+## 바 차트 (Bar chart)
+바 차트는 여러 항목이 존재할 때 그 수량을 한 눈에 비교하는데 특화되어있습니다. 사람은 높이 차이에 민감해 최고 최저에 대한 강조함에 있어 적합합니다. 
+
+
+## 라인 차트 (Line chart)
+데이터의 변화를 직관적으로 파악하는데 강점이 있는 차트입니다. 
+최대, 최소보다는 증가, 감소에 초점이 맞춰져있습니다. 보편적으로 x축에는 시간과 관련된 dimension들이 들어가게됩니다. 
+
+## 파이 차트 (Pie chart)
+비례 관계를 표현하는데 적합합니다. 공간이 한정적인만큼 사용에 주의가 필요합니다. 흔히 6가지 이상의 종류의 데이터가 들어가는 것은 지양해야합니다. 사람은 시계방향으로 관찰하는 것에 익숙해하기 때문에 가장 중요한 부분부터 12시 위치에 두어야 합니다. 보편적으로는 크기가 큰 것을 12시에 위치시킵니다.
+
+# 라이브러리
+## d3.js
+Data - Driven Documents의 약자로 자바스크립트에 기반하여 SVG를 사용한 데이터 시각화 라이브러리입니다. 자바스크립트에서 사용되는 차트라이브러리의 상당수는 d3를 쓰기 편하게 랩핑해놓은 라이브러리입니다. 그만큼 primitive하지만 러닝커브와 복잡성을 자랑합니다. 
+
+> TMI
+https://observablehq.com/
+d3를 만든 Mike Bostock은 현재 observable이라는 데이터 시각화 관련 회사를 운영중이고 내부적으로 사용중이기때문에 꾸준히 메인테인되는 모습을 보입니다. 
+
+d3에 대한 내용은 방대하기때문에 차후에 시리즈로 다뤄보도록하고 짧게 넘어가도록 하겠습니다. 
+
+
+## chart libraries
+
+### 고려할 점
+
+차트 라이브러리를 사용할 때에는 생각보다 많은 고민을 하게 됩니다. 그 이유는 각 라이브러리마다 작업방식과 요구하는 데이터 피봇팅 그리고 스타일 커스텀의 자유도 여부등을 고려해야 하기 때문입니다. 일례로 디자이너분이 애니메이션의 모습이나 구체적인 behavior를 지정해줄 수 없는 경우가 있습니다. 그렇지만 interaction 요소를 위해 기본 내장되어있는 애니메이션을 사용한다했을 때 프로젝트 결에 맞는 것을 사용하는 것이 좋다고 생각합니다. 
+
+> 우선 라인 / 파이 / 바 차트에 한해서 설명하도록 하겠습니다. 
+
+### 사용 방식 
+
+> ## JS / TS native한 방식
+
+> ### echarts
+
+```
+const Chart = () => {
+  const options =
+		xAxis: {
+	    type: 'category',
+	    data: ['1', '2', '3', '4']
+	  },
+	  yAxis: {
+	    type: 'value'
+	  },
+	  series: [
+	    {
+	      data: [150, 230, 224, 218, 135, 147, 260],
+	      type: 'line'
+	    }
+	  ]
+
+	return (
+    <ECharts
+			option={options}
+      opts={{ renderer: 'svg', width: 'auto', height: '100%' }}
+    />
+  );
+}
+```
+> ### chartjs
+
+```
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Line Chart',
+    },
+  },
+};
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Dataset 2',
+      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    },
+  ],
+};
+
+export function App() {
+  return <Line options={options} data={data} />;
+}
+```
+
+해당 라이브러리들은 특정한 종류의 차트를 먼저 '지정'하고 이에 적합한 option, axis에대한 데이터들을 상단에서 변수로서 지정해 넘겨주는 방식입니다. options라는 하나의 변수에 복합적으로 여러 정보가 합쳐서 들어가다보니 가독성면에서 떨어지고 코드의 유연성이 떨어지고 복잡도가 올라갑니다. '리액트스럽다'라고 표현하기에는 어딘가 어색한면이 있습니다. 보통 vanilla로 제공되는 라이브러리들이 이런 형태를 띕니다. 
+
+> ## 독립적 컴포넌트 방식
+
+> ### victory js
+
+```
+<VictoryChart
+  theme={VictoryTheme.material}
+>
+  <VictoryLine
+    style={{
+      data: { stroke: "#c43a31" },
+      parent: { border: "1px solid #ccc"}
+    }}
+    data={[
+      { x: 1, y: 2 },
+      { x: 2, y: 3 },
+      { x: 3, y: 5 },
+      { x: 4, y: 4 },
+      { x: 5, y: 7 }
+    ]}
+  />
+</VictoryChart>
+```
+
+> ### recharts 
+
+```
+  <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        </LineChart>
+      </ResponsiveContainer>
+```
+
+차트에는 단순 라인, 바, 파이만 있는 것이 아니고 위와 같이 Grid, Axis, Legend, Tooltip등 차트를 보다 풍성하게 만들어줄 요소들이 존재합니다. 컴포넌트 친화적인 라이브러리들은 각각의 요소들을 컴포넌트로서 제공해 독립적으로 운영할 수 있게끔 해줍니다. 
+
+### 무게 
+![](https://velog.velcdn.com/images/restarea/post/63cd84de-8ad8-4ede-924f-a2c3b371308b/image.png)
+
+5가지 이상의 라이브러리를 사용해본 결과 chart js가 무게는 가장 가벼웠던 것 같습니다. visx 같은 경우에는 각 컴포넌트 별로 나눠서 내려받기 때문에 만족감이 높았습니다. 
+
+### 그 외
+
+데이터가 많이 오고가서 발전된 것인지는 모르겠으나 3d 차트나 정말 다양한 모습의 차트를 제공하고 예시들이 정말 많은 중국 라이브러리들 만나볼 수 있었는데 docs가 제대로 번역이 되어있지 않거나 git issue가 중국어로 주고받는 경우들이 종종있고 오래동안 메인테인되지 않는 라이브러리들이 있어 예시에서 제외했습니다. 어떤 종류의 라이브러리이건 지속해서 메인테인되는 환경을 제공할 든든한 회사가 뒤에 있는 것이 정말 중요하다고 생각합니다. 따라서 고려할만한건 alibaba의 bizcharts 정도입니다. 
